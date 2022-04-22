@@ -8,7 +8,7 @@ function getThings(){
   console.log("getThings()Action!")
   return (dispatch) => {
     dispatch({ type: GET_THINGS_REQUEST });
-    return fetch(`/greetings`)
+    return fetch(`http://localhost:3000/greetings`)
       .then((response) => response.json())
       .then((json) => dispatch(getThingsSuccess(json)))
       .catch((error) => console.log(`Fetching Error ${error}`));

@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router,Route,Routes}  from 'react-router-dom';
 import HelloWorld from './components/HelloWorld'
-import configureStore from '../src/redux/configureStore';
+import configureStore from './redux/configureStore';
 import { Provider } from "react-redux";
 const store = configureStore();
 
