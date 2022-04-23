@@ -36,7 +36,7 @@ start live server:
 ```
 npm start
 ```
-
+open in port:3001 for front end. 
 ## Prerequisites
 - Node.js
 
