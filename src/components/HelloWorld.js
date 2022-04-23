@@ -1,8 +1,7 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import PropTypes from 'prop-types';
 
 const GET_THINGS_REQUEST = 'GET_THINGS_REQUEST';
 export const GET_THINGS_SUCCESS = 'GET_THINGS_SUCCESS';
@@ -24,21 +23,23 @@ function getThings() {
   };
 }
 
-// eslint-disable-next-line react/prefer-stateless-function
-class HelloWorld extends React.Component {
-  render() {
-    const { greetings } = this.props;
-    const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
-    return (
-      <>
-        Greeting:
-        {' '}
-        <p>{randomGreeting.name}</p>
-        <br />
-        <button type="button" className="getThingsBtn" onClick={() => this.props.getThings()}>Greet Me</button>
-      </>
-    );
-  }
+function HelloWorld(props) {
+  const { greetings, getThings } = props;
+  const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+  return (
+    <>
+      Greeting:
+      <p>{randomGreeting.name}</p>
+      <br />
+      <button
+        type="button"
+        className="getThingsBtn"
+        onClick={() => getThings()}
+      >
+        Greet Me
+      </button>
+    </>
+  );
 }
 
 const structuredSelector = createStructuredSelector({
@@ -46,5 +47,9 @@ const structuredSelector = createStructuredSelector({
 });
 
 const mapDispatchToProps = { getThings };
+HelloWorld.propTypes = {
+  greetings: PropTypes.arrayOf(PropTypes.any.isRequired).isRequired,
+  getThings: PropTypes.func.isRequired,
+};
 
 export default connect(structuredSelector, mapDispatchToProps)(HelloWorld);
